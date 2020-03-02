@@ -7,4 +7,6 @@ git clone https://github.com/mgnaegi/cpmp_instances.git
 ```
 
 ## Manually
-- Download https://github.com/mgnaegi/cpmp_instances/archive/master.zip
+- Open https://github.com/mgnaegi/cpmp_instances/tree/master/instances
+- Click on a single instance
+- Click on "Download" or "View raw"
