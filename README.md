@@ -1,12 +1,12 @@
 # Download instances
 
-## Using [Git Large File Storage (LFS)](https://git-lfs.github.com/)
+## Download all instances using [Git Large File Storage (LFS)](https://git-lfs.github.com/)
 ```
 git lfs install
 git clone https://github.com/mgnaegi/cpmp_instances.git
 ```
 
-## Manually
+## Download individual instances
 - Open https://github.com/mgnaegi/cpmp_instances/tree/master/instances
 - Click on a single instance
 - Click on "Download" or "View raw"
