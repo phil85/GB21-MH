@@ -1,12 +1,56 @@
-# Download instances
+# GB20-MH
 
-## Download all instances using [Git Large File Storage (LFS)](https://git-lfs.github.com/)
-```
-git lfs install
-git clone https://github.com/mgnaegi/cpmp_instances.git
+Clustering algorithm for large-scale capacitated clustering. 
+
+## Dependencies
+
+GB20-MH depends on:
+* [Gurobi](https://anaconda.org/Gurobi/gurobi)
+* [Numpy](https://anaconda.org/conda-forge/numpy)
+* [Scipy](https://anaconda.org/anaconda/scipy)
+
+Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/).
+
+## Installation
+
+1) Download and install Gurobi (https://www.gurobi.com/downloads/)
+2) Download and install [Git Large File Storage (LFS)](https://git-lfs.github.com/) (git lfs install)
+3) Clone this repository (git clone https://github.com/phil85/GB20-MH.git)
+
+## Usage
+
+The main.py file contains code that applies the GB20-MH algorithm on an illustrative example.
+
+```python
+labels = gb20_mh(tbd)
 ```
 
-## Download individual instances
-- Open https://github.com/mgnaegi/cpmp_instances/tree/master/instances
-- Click on a single instance
-- Click on "Download" or "View raw"
+## Documentation
+
+The documentation of the module blpkm_cc can be found [here](https://phil85.github.io/GB20-MH/documentation.html).
+
+## Reference
+
+Please cite the following paper if you use this algorithm.
+
+**Gnägi, M., Baumann, P.** (2021): A matheuristic for large-scale capacitated clustering. Computers & Operations Research. To appear
+
+Bibtex:
+```
+@article{Gna21,
+  title={A matheuristic for large-scale capacitated clustering},
+  author={Gn{\"a}gi, Mario and Baumann, Philipp},
+  journal={Computers \& Operations Research},
+  volume={},
+  pages={},
+  year={},
+  publisher={Elsevier},
+  note={To appear}
+}
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+
