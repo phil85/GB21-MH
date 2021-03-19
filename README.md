@@ -25,10 +25,6 @@ The main.py file contains code that applies the GB20-MH algorithm on an illustra
 labels = gb20_mh(tbd)
 ```
 
-## Documentation
-
-The documentation of the module blpkm_cc can be found [here](https://phil85.github.io/GB20-MH/documentation.html).
-
 ## Reference
 
 Please cite the following paper if you use this algorithm.
