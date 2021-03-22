@@ -1,10 +1,10 @@
-# GB20-MH
+# GB21-MH
 
 Clustering algorithm for large-scale capacitated clustering. 
 
 ## Dependencies
 
-GB20-MH depends on:
+GB21-MH depends on:
 * [Gurobi](https://anaconda.org/Gurobi/gurobi)
 * [Numpy](https://anaconda.org/conda-forge/numpy)
 * [Scipy](https://anaconda.org/anaconda/scipy)
@@ -15,14 +15,14 @@ Gurobi is a commercial mathematical programming solver. Free academic licenses a
 
 1) Download and install Gurobi (https://www.gurobi.com/downloads/)
 2) Download and install [Git Large File Storage (LFS)](https://git-lfs.github.com/) (git lfs install)
-3) Clone this repository (git clone https://github.com/phil85/GB20-MH.git)
+3) Clone this repository (git clone https://github.com/phil85/GB21-MH.git)
 
 ## Usage
 
-The main.py file contains code that applies the GB20-MH algorithm on an illustrative example.
+The main.py file contains code that applies the GB21-MH algorithm on an illustrative example.
 
 ```python
-labels = gb20_mh(tbd)
+labels = gb21_mh(tbd)
 ```
 
 ## Reference
