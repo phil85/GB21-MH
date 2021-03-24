@@ -15,18 +15,25 @@ from sklearn.utils import check_random_state
 import numpy_indexed as npi
 
 
-def gb21_mh(inst_path, t_total, n_start, g_initial, init, n_target, l, t_local,
+def gb21_mh(X, Q, q, p, t_total,
+            n_start, g_initial, init, n_target, l, t_local,
             mip_gap_global=0.01, mip_gap_local=0.01,
             np_seed=1, gurobi_seed=1):
-
-    # read test instance from txt-file
-    inst = read_inst(inst_path)
 
     # initialize timeStart
     timeStart = time.time()
 
     # set numpy random seed
     np.random.seed(np_seed)
+
+    # setup nodes collection
+    nodes = np.empty(X.shape[0], dtype=NodeClass)
+    for idx in np.arange(X.shape[0]):
+        nodes[idx] = NodeClass(idx, X[idx], Q[idx], q[idx])
+
+    # setup inst
+    inst = InstanceClass(X.shape[0], p, X.shape[1],
+                         np.arange(X.shape[0]), nodes, X)
 
     # initialize help variables
     initial_ofv = float('inf')
@@ -239,7 +246,7 @@ def gb21_mh(inst_path, t_total, n_start, g_initial, init, n_target, l, t_local,
 
     # log to console
     print('{:*^60}'.format(' Global optimization phase '))
-    print('Final objective: ' + '{: .2f}'.format(initial_ofv))
+    print('Final objective: ' + '{: .4f}'.format(initial_ofv))
     print('Running time (total): ' +
           '{:.2f}s'.format(time.time() - timeStart))
     print('{:*^60}'.format(''))
@@ -338,7 +345,8 @@ def kmeans_pp(inst):
             inst.X, inst.p,
             random_state=random_state,
             x_squared_norms=x_squared_norms)
-    seed_medians = npi.indices(inst.X, seed_medians_coords)
+    median_ids = {tuple(inst.X[i, :]): i for i in range(inst.n)}
+    seed_medians = [median_ids[tuple(coords)] for coords in seed_medians_coords]
 
     return seed_medians
 
@@ -548,24 +556,16 @@ def read_inst(inst_path):
     else:
         m = 2
 
-    nodes = np.empty(n, dtype=NodeClass)
+    X = np.empty((0, m), float)
+    Q = np.empty(n, dtype=float)
+    q = np.empty(n, dtype=float)
     for idx in np.arange(n):
         lineValues = f.readline().split()
-        feature_values = np.array(lineValues[:m]).astype(float)
-        Q = float(lineValues[m])
-        q = int(lineValues[m+1])
-        nodes[idx] = NodeClass(idx, feature_values, Q, q)
+        X = np.append(X, np.array([lineValues[:m]]).astype(float), axis=0)
+        Q[idx] = float(lineValues[m])
+        q[idx] = float(lineValues[m+1])
 
-    # setup set I
-    I = np.arange(n)
-
-    # setup feature values array
-    X = np.array([node.feature_vector for node in nodes])
-
-    # setup inst
-    inst = InstanceClass(n, p, m, I, nodes, X)
-
-    return inst
+    return X, Q, q, p
 
 
 def get_ofv(inst, solution, subset_medians=None):

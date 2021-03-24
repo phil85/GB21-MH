@@ -25,12 +25,35 @@ Gurobi is a commercial mathematical programming solver. Free academic licenses a
 The main.py file contains code that applies the GB21-MH algorithm on an illustrative example.
 
 ```python
-medians, assignments = gb21_mh(inst_path, t_total, n_start, g_initial, init, n_target, l, t_local)
+medians, assignments = gb21_mh(X, Q, q, p, t_total, n_start, g_initial, init, n_target, l, t_local, mip_gap_global, mip_gap_local, np_seed, gurobi_seed)
 ```
+
+Instance:
+* X: np.array, feature vectors of objects
+* Q: np.array, capacities of objects
+* q: np.array, weights of objects
+* p: int, number of clusters
+
+Tuning parameters of algorithm:
+* t_total: float, time limit on total running time
+* n_start: int, number of runs of global optimization phase  
+* g_initial: int, initial number of nearest medians to which an object can be assigned
+* init: str, initialization method to determine initial set of medians
+* n_target: int, target number of objects in initial subset
+* l: int, number of nearest objects to each median to be considered as potential new medians 
+* t_local: float, time limit for solving model in local optimization phase
+* mip_gap_global: float, additional termination criterion for solving model in global optimization phase
+* mip_gap_local: float, additional termination criterion for solving model in local optimization phase
+
+Random seeds:
+* np_seed: int, random seed for numpy
+* gurobi_seed: int, random seed for gurobi solver
+
+For a more detailed description, please refer to the paper below.
 
 ## Reference
 
-Please cite the following paper if you use this algorithm.
+Please cite the following paper if you use the algorithm or the instances.
 
 **Gnägi, M., Baumann, P.** (2021): A matheuristic for large-scale capacitated clustering. Computers & Operations Research. To appear
 
