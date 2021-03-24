@@ -17,7 +17,7 @@ Gurobi is a commercial mathematical programming solver. Free academic licenses a
 ## Installation
 
 1) Download and install Gurobi (https://www.gurobi.com/downloads/)
-2) Download and install [Git Large File Storage (LFS)](https://git-lfs.github.com/) (git lfs install)
+2) Download and install Git Large File Storage (https://git-lfs.github.com/)
 3) Clone this repository (git clone https://github.com/phil85/GB21-MH.git)
 
 ## Usage
