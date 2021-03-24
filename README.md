@@ -8,6 +8,9 @@ GB21-MH depends on:
 * [Gurobi](https://anaconda.org/Gurobi/gurobi)
 * [Numpy](https://anaconda.org/conda-forge/numpy)
 * [Scipy](https://anaconda.org/anaconda/scipy)
+* [Scikit Learn](https://anaconda.org/anaconda/scikit-learn)
+* [Numpy Indexed](https://anaconda.org/conda-forge/numpy-indexed)
+* [Time](https://anaconda.org/conda-forge/time)
 
 Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/).
 
@@ -22,7 +25,7 @@ Gurobi is a commercial mathematical programming solver. Free academic licenses a
 The main.py file contains code that applies the GB21-MH algorithm on an illustrative example.
 
 ```python
-labels = gb21_mh(tbd)
+medians, assignments = gb21_mh(inst_path, t_total, n_start, g_initial, init, n_target, l, t_local)
 ```
 
 ## Reference
