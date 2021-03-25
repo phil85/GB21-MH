@@ -9,14 +9,14 @@ from scipy.spatial.distance import cdist
 from scipy.spatial.distance import pdist, squareform
 
 # only for kmeans++
-from sklearn.cluster.k_means_ import _k_init
+from sklearn.cluster import _k_init
 from sklearn.utils.extmath import row_norms
 from sklearn.utils import check_random_state
 import numpy_indexed as npi
 
 
 def gb21_mh(X, Q, q, p, t_total,
-            n_start, g_initial, init, n_target, l, t_local,
+            n_start, g_initial, init, n_target, l, t_local, flag_local=True,
             mip_gap_global=0.01, mip_gap_local=0.01,
             np_seed=1, gurobi_seed=1):
 
@@ -252,7 +252,7 @@ def gb21_mh(X, Q, q, p, t_total,
     print('{:*^60}'.format(''))
 
     # end if t_total is exceeded
-    if time.time() - timeStart > t_total:
+    if time.time() - timeStart > t_total or flag_local == False:
 
         return initial_solution.medians, initial_solution.assignments
 
@@ -345,8 +345,7 @@ def kmeans_pp(inst):
             inst.X, inst.p,
             random_state=random_state,
             x_squared_norms=x_squared_norms)
-    median_ids = {tuple(inst.X[i, :]): i for i in range(inst.n)}
-    seed_medians = [median_ids[tuple(coords)] for coords in seed_medians_coords]
+    seed_medians = npi.indices(inst.X, seed_medians_coords)
 
     return seed_medians
 
