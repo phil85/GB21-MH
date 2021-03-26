@@ -9,7 +9,6 @@ GB21-MH depends on:
 * [Numpy](https://anaconda.org/conda-forge/numpy)
 * [Scipy](https://anaconda.org/anaconda/scipy)
 * [Scikit Learn](https://anaconda.org/anaconda/scikit-learn)
-* [Numpy Indexed](https://anaconda.org/conda-forge/numpy-indexed)
 * [Time](https://anaconda.org/conda-forge/time)
 
 Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/).

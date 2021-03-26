@@ -9,10 +9,9 @@ from scipy.spatial.distance import cdist
 from scipy.spatial.distance import pdist, squareform
 
 # only for kmeans++
-from sklearn.cluster import _k_init
+from sklearn.cluster import kmeans_plusplus
 from sklearn.utils.extmath import row_norms
 from sklearn.utils import check_random_state
-import numpy_indexed as npi
 
 
 def gb21_mh(X, Q, q, p, t_total,
@@ -341,13 +340,11 @@ def kmeans_pp(inst):
 
     random_state = check_random_state(None)
     x_squared_norms = row_norms(inst.X, squared=True)
-    seed_medians_coords = _k_init(
-            inst.X, inst.p,
-            random_state=random_state,
-            x_squared_norms=x_squared_norms)
-    seed_medians = npi.indices(inst.X, seed_medians_coords)
+    centers, indices = kmeans_plusplus(inst.X, inst.p,
+                                       random_state=random_state,
+                                       x_squared_norms=x_squared_norms)
 
-    return seed_medians
+    return indices
 
 
 def setup_mip_assignment(g, t_total, mip_gap_global, gurobi_seed,
