@@ -8,7 +8,7 @@ GB21-MH depends on:
 * [Gurobi](https://anaconda.org/Gurobi/gurobi)
 * [Numpy](https://anaconda.org/conda-forge/numpy)
 * [Scipy](https://anaconda.org/anaconda/scipy)
-* [Scikit Learn](https://anaconda.org/anaconda/scikit-learn)
+* [Scikit Learn](https://anaconda.org/anaconda/scikit-learn) (requires v0.24.1 or newer)
 * [Time](https://anaconda.org/conda-forge/time)
 
 Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/).
@@ -36,7 +36,7 @@ Instance:
 Tuning parameters of algorithm:
 * t_total: float, time limit on total running time
 * n_start: int, number of runs of global optimization phase  
-* g_initial: int, initial number of nearest medians to which an object can be assigned
+* g_initial: int, initial number of nearest medians to which an object can be assigned (recommended: g_initial > 1)
 * init: str, initialization method to determine initial set of medians
 * n_target: int, target number of objects in initial subset
 * l: int, number of nearest objects to each median to be considered as potential new medians 
