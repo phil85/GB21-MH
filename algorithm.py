@@ -1,8 +1,8 @@
 
 # import standard packages
 import time
+import warnings
 import numpy as np
-import gurobipy as gurobi
 
 from sklearn.neighbors import KDTree
 from scipy.spatial.distance import cdist
@@ -13,11 +13,19 @@ from sklearn.cluster import kmeans_plusplus
 from sklearn.utils.extmath import row_norms
 from sklearn.utils import check_random_state
 
+# import package gurobi
+try:
+    import gurobipy as gurobi
+except ImportError:
+    warnings.warn('Gurobi is not available. Please set the argument '
+                  'no_solver=True when calling gb21_mh(...).')
+
 
 def gb21_mh(X, Q, q, p, t_total,
-            n_start, g_initial, init, n_target, l, t_local, flag_local=True,
+            n_start, g_initial, init, n_target, l, t_local,
             mip_gap_global=0.01, mip_gap_local=0.01,
-            np_seed=1, gurobi_seed=1):
+            np_seed=1, gurobi_seed=1,
+            no_local=False, no_solver=False):
 
     # initialize timeStart
     timeStart = time.time()
@@ -59,6 +67,11 @@ def gb21_mh(X, Q, q, p, t_total,
         # initialize help variables
         iteration = 0
         feasible_assignment_found = False
+
+        # set init="capacity-based" and no_local=True
+        if no_solver:
+            init = "capacity-based"
+            no_local = True
 
         # initialize heuristic_assignment (global optimization phase)
         if init == "capacity-based":
@@ -233,6 +246,10 @@ def gb21_mh(X, Q, q, p, t_total,
                         # reset number of closest medians for assignment
                         g = min(g_initial, inst.p)
                         heuristic_assignment = False
+
+                        # return solution if no_solver=True
+                        if no_solver:
+                            break
                     else:
                         break
 
@@ -251,7 +268,7 @@ def gb21_mh(X, Q, q, p, t_total,
     print('{:*^60}'.format(''))
 
     # end if t_total is exceeded
-    if time.time() - timeStart > t_total or flag_local == False:
+    if time.time() - timeStart > t_total or no_local == True:
 
         return initial_solution.medians, initial_solution.assignments
 

@@ -5,13 +5,13 @@ Clustering algorithm for large-scale capacitated clustering.
 ## Dependencies
 
 GB21-MH depends on:
-* [Gurobi](https://anaconda.org/Gurobi/gurobi)
 * [Numpy](https://anaconda.org/conda-forge/numpy)
 * [Scipy](https://anaconda.org/anaconda/scipy)
 * [Scikit Learn](https://anaconda.org/anaconda/scikit-learn) (requires v0.24.1 or newer)
 * [Time](https://anaconda.org/conda-forge/time)
+* ([Gurobi](https://anaconda.org/Gurobi/gurobi))
 
-Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/).
+Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/). Feasible solutions can be derived without Gurobi solver by applying capacity-based initialization method only (set argument no_solver=True).
 
 ## Installation
 
@@ -24,7 +24,7 @@ Gurobi is a commercial mathematical programming solver. Free academic licenses a
 The main.py file contains code that applies the GB21-MH algorithm on an illustrative example.
 
 ```python
-medians, assignments = gb21_mh(X, Q, q, p, t_total, n_start, g_initial, init, n_target, l, t_local, flag_local, mip_gap_global, mip_gap_local, np_seed, gurobi_seed)
+medians, assignments = gb21_mh(X, Q, q, p, t_total, n_start, g_initial, init, n_target, l, t_local, mip_gap_global, mip_gap_local, np_seed, gurobi_seed, no_local, no_solver)
 ```
 
 Instance:
@@ -41,13 +41,17 @@ Tuning parameters of algorithm:
 * n_target: int, target number of objects in initial subset
 * l: int, number of nearest objects to each median to be considered as potential new medians 
 * t_local: float, time limit for solving model in local optimization phase
-* flag_local: boolean, no local optimization phase if set to false
 * mip_gap_global: float, additional termination criterion for solving model in global optimization phase
 * mip_gap_local: float, additional termination criterion for solving model in local optimization phase
 
 Random seeds:
 * np_seed: int, random seed for numpy
 * gurobi_seed: int, random seed for gurobi solver
+
+Additional parameters:
+* no_local: boolean, return best solution after global optimization phase (no local optimization phase)
+* no_solver: boolean, return best solution after n_start runs of capacity-based initialization method (no solver required)
+
 
 For a more detailed description, please refer to the paper below.
 
