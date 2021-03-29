@@ -11,7 +11,7 @@ GB21-MH depends on:
 * [Time](https://anaconda.org/conda-forge/time)
 * ([Gurobi](https://anaconda.org/Gurobi/gurobi))
 
-Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/). Feasible solutions can be derived without Gurobi solver by applying capacity-based initialization method only (set argument no_solver=True).
+Gurobi is a commercial mathematical programming solver. Free academic licenses are available [here](https://www.gurobi.com/academia/academic-program-and-licenses/). Feasible solutions can be derived without the Gurobi solver by applying the capacity-based initialization method only (set argument no_solver=True).
 
 ## Installation
 
