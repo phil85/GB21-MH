@@ -59,19 +59,17 @@ For a more detailed description, please refer to the paper below.
 
 Please cite the following paper if you use the algorithm or the instances.
 
-**Gnägi, M., Baumann, P.** (2021): A matheuristic for large-scale capacitated clustering. Computers & Operations Research. To appear
+**Gnägi, M., Baumann, P.** (2021): A matheuristic for large-scale capacitated clustering. Computers & Operations Research, 105304. [&rarr; available online](https://www.sciencedirect.com/science/article/pii/S0305054821000952)
 
 Bibtex:
 ```
-@article{Gna21,
+@article{GnaBau21,
   title={A matheuristic for large-scale capacitated clustering},
   author={Gn{\"a}gi, Mario and Baumann, Philipp},
   journal={Computers \& Operations Research},
-  volume={},
-  pages={},
-  year={},
-  publisher={Elsevier},
-  note={To appear}
+  pages={105304},
+  year={2021},
+  publisher={Elsevier}
 }
 ```
 
