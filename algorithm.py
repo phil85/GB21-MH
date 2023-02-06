@@ -1,3 +1,4 @@
+# © 2021, University of Bern, Chair of Quantitative Methods, Mario Gnägi, Philipp Baumann
 
 # import standard packages
 import time
